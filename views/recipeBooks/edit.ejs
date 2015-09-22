@@ -1,0 +1,11 @@
+<% include ../partials/header %>
+<form action="/recipe_books/<%= book.id %>?_method=PUT" method="POST">
+  <div>
+    <input type="text" name="title" value="<%= book.title %>">
+  </div>
+  <div>
+    <input type="hidden" name="date" value="<%= moment().format() %>">
+  </div>
+  <input type="submit" name="name" value="Submit">
+</form>
+<% include ../partials/footer %>

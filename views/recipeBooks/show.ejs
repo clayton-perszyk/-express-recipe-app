@@ -1,0 +1,6 @@
+<% include ../partials/header %>
+  <h1><%= book.title %></h1>
+  <form action="/recipe_books/<%= book.id %>?_method=DELETE" method="post">
+    <input type="submit" name="submit" value="Delete Book">
+  </form>
+<% include ../partials/footer %>

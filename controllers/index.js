@@ -1,5 +1,5 @@
 app.get('/', function(req, res){
-  // Home page
+  res.render('index');
 });
 
 require('./f2fRecipes');

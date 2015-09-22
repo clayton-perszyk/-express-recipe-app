@@ -5,14 +5,15 @@ var session = require('cookie-session');
 var db = require('./models');
 var loginMiddleware = require('./middleware/loginHelpers');
 var routeMiddleware = require('./middleware/routeHelpers');
+moment = require('moment');
 
 app = express();
 
 app.set('view engine', 'ejs');
-app.use(loginMiddleware);
-app.use(routeMiddleware);
+// app.use(loginMiddleware);
+// app.use(routeMiddleware);
 app.use(express.static(__dirname + '/public'));
-app.use(badyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 // app.use(session({
 //   maxAge: 3600000,
