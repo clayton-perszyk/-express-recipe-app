@@ -1,4 +1,7 @@
 <% include ../partials/header %>
   <h1><%= recipe.title %></h1>
   <a href="/recipe_books/<%= recipe.book._id %>/user_recipes/<%= recipe._id %>/edit">Edit Recipe</a>
+  <form action="/recipe_books/<%= recipe.book._id %>/user_recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+    <input type="submit" name="delete" value="DELETE RECIPE!!!">
+  </form>
 <% include ../partials/footer %>

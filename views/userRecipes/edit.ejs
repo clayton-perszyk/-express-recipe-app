@@ -2,23 +2,23 @@
   <form action="/recipe_books/<%= recipe.book._id %>/user_recipes/<%= recipe._id %>?_method=PUT" method="POST">
     <div>
       <label>Recipe Title:
-        <input type="text" name="title" placeholder="<%= recipe.title %>">
+        <input type="text" name="title" value="<%= recipe.title %>">
       </label>
     </div>
     <div>
       <label>Image URL:
-        <input type="text" name="imageUrl" placeholder="<%= recipe.imageUrl %>">
+        <input type="text" name="imageUrl" value="<%= recipe.imageUrl %>">
       </label>
     </div>
     <div>
       <label>Ingredients:
-        <textarea name="ingredients" rows="8" cols="40" placeholder="<%= recipe.ingredients %>"></textarea>
+        <textarea name="ingredients" rows="8" cols="40" ><%= recipe.ingredients %></textarea>
       </label>
     </div>
     <div>
       <label>Directions:
       </label>
-      <textarea name="directions" rows="8" cols="40" placeholder="<%= recipe.directions %>"></textarea>
+      <textarea name="directions" rows="8" cols="40" ><%= recipe.directions %></textarea>
     </div>
     <input type="submit" name="submit" value="Update Recipe">
   </form>

@@ -66,12 +66,12 @@ app.put('/recipe_books/:recipe_book_id/user_recipes/:id', function(req, res){
 });
 
 // REMOVE a UserRecipe from recipeBook
-app.delete('recipe_books/:recipe_book_id/recipes/:id', function(req, res){
+app.delete('/recipe_books/:recipe_book_id/user_recipes/:id', function(req, res){
   db.UserRecipe.findByIdAndRemove(req.params.id, req.body, function(err, recipe){
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/recipe_books/' + req.params.recipe_book_id +  '/recipes');
+      res.redirect('/recipe_books/' + req.params.recipe_book_id +  '/user_recipes');
     }
   });
 });
