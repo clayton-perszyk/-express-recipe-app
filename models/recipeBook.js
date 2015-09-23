@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var UserRecipe = require('./userRecipe');
+var F2fRecipe = require('./f2fRecipe');
 
 var recipeBookSchema = new mongoose.Schema({
   title: String,

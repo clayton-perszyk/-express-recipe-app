@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+  <form action="/recipe_books/<%= recipe.book._id %>/user_recipes/<%= recipe._id %>?_method=PUT" method="POST">
+    <div>
+      <label>Recipe Title:
+        <input type="text" name="title" placeholder="<%= recipe.title %>">
+      </label>
+    </div>
+    <div>
+      <label>Image URL:
+        <input type="text" name="imageUrl" placeholder="<%= recipe.imageUrl %>">
+      </label>
+    </div>
+    <div>
+      <label>Ingredients:
+        <textarea name="ingredients" rows="8" cols="40" placeholder="<%= recipe.ingredients %>"></textarea>
+      </label>
+    </div>
+    <div>
+      <label>Directions:
+      </label>
+      <textarea name="directions" rows="8" cols="40" placeholder="<%= recipe.directions %>"></textarea>
+    </div>
+    <input type="submit" name="submit" value="Update Recipe">
+  </form>
+<% include ../partials/footer %>

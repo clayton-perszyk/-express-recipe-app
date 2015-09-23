@@ -9,7 +9,7 @@ app.get('/recipe_books', function(req, res){
 
 // SEND NEW FORM
 app.get('/recipe_books/new', function(req, res){
-  res.render('RecipeBooks/new');
+  res.render('recipe_books/new');
 });
 
 // CREATE NEW RECIPE BOOK

@@ -1,5 +1,8 @@
 <% include ../partials/header %>
+  <!-- TODO: Populate UserRecipes And F2fRecipes in controller -->
   <h1><%= book.title %></h1>
+  <a href="/recipe_books/<%= book._id %>/user_recipes">See User Recipes</a>
+  <a href="/recipe_books/<%= book._id %>/user_recipes/new">Add A New Recipe</a>
   <form action="/recipe_books/<%= book.id %>?_method=DELETE" method="post">
     <input type="submit" name="submit" value="Delete Book">
   </form>

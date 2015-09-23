@@ -1,8 +1,9 @@
 <% include ../partials/header %>
-  //title, imageUrl, ingredients, directions
 
-  <h1>Recipes in <%= book.title > book</h1>
-  <% for(var i = 0; i < book.userRecipes; i++) { %>
+  <h1>Recipes in <%= recipeBook.title %> book</h1>
 
-  <%  %>
+  <% for(var i = 0; i < recipeBook.userRecipes.length; i++) { %>
+    <li><a href="/recipe_books/<%= recipeBook._id %>/user_recipes/<%= recipeBook.userRecipes[i]._id %>"><%= recipeBook.userRecipes[i].title %></a></li>
+  <% } %>
+
 <% include ../partials/footer %>
