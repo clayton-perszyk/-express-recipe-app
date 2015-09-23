@@ -11,6 +11,11 @@ var userSchema = new mongoose.Schema({
   }]
 });
 
+userSchema.pre('remove', function(next){
+  RecipeBook.remove({owner: this._id}).exec();
+  next();
+});
+
 var User = mongoose.model("User", userSchema);
 
 module.exports = User;

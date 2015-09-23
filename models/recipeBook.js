@@ -17,6 +17,16 @@ var recipeBookSchema = new mongoose.Schema({
   }
 });
 
+recipeBookSchema.pre('remove', function(next){
+  F2fRecipe.remove({book: this._id}).exec();
+  next();
+});
+
+recipeBookSchema.pre('remove', function(next){
+  UserRecipe.remove({book: this._id}).exec();
+  next();
+});
+
 var RecipeBook = mongoose.model("RecipeBook", recipeBookSchema);
 
 module.exports = RecipeBook;
