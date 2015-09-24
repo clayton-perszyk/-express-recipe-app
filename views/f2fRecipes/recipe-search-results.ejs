@@ -1,0 +1,7 @@
+<% include ../partials/header %>
+  <h1><%= label %></h1>
+  <% for(var i = 0; i < recipes.length; i++) { %>
+    <%= recipes[i]._id %>
+    <li><a href="/recipe_books/<%= book.id %>/f2f_recipes/new?recipeId=<%= recipes[i].recipe_id %>"><%= recipes[i].title %></a></li>
+  <% } %>
+<% include ../partials/footer %>

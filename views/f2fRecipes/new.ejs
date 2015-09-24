@@ -1,0 +1,14 @@
+<% include ../partials/header %>
+  <h1><%= recipe.title %></h1>
+  <h5>Social Rank: <%= parseFloat(recipe.social_rank).toFixed(2) %></h5>
+  <img src="<%= recipe.image_url %>" alt="<%= recipe.title %> image" />
+  <a href="<%= recipe.source_url %>">Get <%= recipe.title %> recipe from <%= recipe.publisher %></a>
+  <form action="/recipe_books/<%= bookId %>/f2f_recipes" method="post">
+    <input type="hidden" name="title" value="<%= recipe.title %>">
+    <input type="hidden" name="imageUrl" value="<%= recipe.image_url %>">
+    <input type="hidden" name="source" value="<%= recipe.source_url %>">
+    <input type="hidden" name="socialRating" value="">
+    <input type="hidden" name="dateAdded" value="<%= moment().format() %>">
+    <input type="submit" name="submit" value="Add Recipe">
+  </form>
+<% include ../partials/footer %>
