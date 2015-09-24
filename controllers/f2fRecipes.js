@@ -2,7 +2,7 @@ var db = require('../models/index');
 var request = require('request');
 
 // RecipeBook's F2fRecipe's INDEX
-app.get('/recipe_books/:recipe_book_id/f2f_recipes', function(req, res){
+app.get('/recipe_books/:recipe_book_id/f2f_recipes', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   db.RecipeBook.findById(req.params.recipe_book_id)
     .populate('f2fRecipes')
     .exec(function(err, book){
@@ -12,7 +12,7 @@ app.get('/recipe_books/:recipe_book_id/f2f_recipes', function(req, res){
 
 
 // NEW F2fRecipe Form
-app.get('/recipe_books/:recipe_book_id/f2f_recipes/new', function(req, res){
+app.get('/recipe_books/:recipe_book_id/f2f_recipes/new', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   var recipeId = req.query.recipeId;
   request.get('http://food2fork.com/api/get?rId=' + recipeId + '&key=aa8f5bbc95c65103384ed6b44c18b0a0',
     function(err, response, body){
@@ -26,7 +26,7 @@ app.get('/recipe_books/:recipe_book_id/f2f_recipes/new', function(req, res){
     });
 });
 
-app.get('/search_results', function(req, res){
+app.get('/search_results', routeHelpers.ensureLoggedIn,function(req, res){
   var bookId = req.query.recipeBook;
   var searchTerm = req.query.search;
   db.RecipeBook.findById(bookId, function(err, book){
@@ -48,7 +48,7 @@ app.get('/search_results', function(req, res){
 });
 
 // CREATE  a new F2fRecipe for a specific book
-app.post('/recipe_books/:recipe_book_id/f2f_recipes', function(req, res){
+app.post('/recipe_books/:recipe_book_id/f2f_recipes', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   db.F2fRecipe.create(req.body, function(err, recipe){
     if (err) {
       console.log(err);
@@ -66,7 +66,7 @@ app.post('/recipe_books/:recipe_book_id/f2f_recipes', function(req, res){
 });
 
 // SHOW a f2fRecipe
-app.get('/recipe_books/:recipe_book_id/f2f_recipes/:id', function(req, res){
+app.get('/recipe_books/:recipe_book_id/f2f_recipes/:id', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   db.F2fRecipe.findById(req.params.id)
     .populate('book')
     .exec(function(err, recipe){
@@ -76,20 +76,20 @@ app.get('/recipe_books/:recipe_book_id/f2f_recipes/:id', function(req, res){
 
 // DO I NEED THIS EDIT ROUTE???
 // EDIT form for a F2fRecipe in a RecipeBook
-app.get('/recipe_books/:recipe_book_id/f2f_recipes/:id/edit', function(req, res){
-  db.F2fRecipe.findById(req.params.id)
-    .populate('book')
-    .exec(function(err, recipe){
-      if (err) {
-        console.log(err);
-      } else {
-        res.render('f2fRecipes/edit', {recipe: recipe});
-      }
-    });
-});
+// app.get('/recipe_books/:recipe_book_id/f2f_recipes/:id/edit', function(req, res){
+//   db.F2fRecipe.findById(req.params.id)
+//     .populate('book')
+//     .exec(function(err, recipe){
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         res.render('f2fRecipes/edit', {recipe: recipe});
+//       }
+//     });
+// });
 
 // REMOVE a F2fRecipe from a RecipeBook
-app.delete('/recipe_books/:recipe_book_id/f2f_recipes/:id', function(req, res){
+app.delete('/recipe_books/:recipe_book_id/f2f_recipes/:id', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   db.F2fRecipe.findByIdAndRemove(req.params.id, req.body, function(err, recipe){
     if (err) {
       console.log(err);

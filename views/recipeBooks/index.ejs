@@ -4,6 +4,6 @@
   <% for(var i = 0; i < books.length; i++) { %>
     <li><a href="/recipe_books/<%= books[i].id %>"><%= books[i].title %></a></li>
   <% } %>
-
+   <a href="/recipe_books/new">Add New Recipe Book</a>
 
 <% include ../partials/footer %>

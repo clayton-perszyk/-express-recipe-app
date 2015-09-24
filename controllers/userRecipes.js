@@ -1,7 +1,7 @@
 var db = require('../models/index');
 
 // RecipeBook's UserRecipe's INDEX
-app.get('/recipe_books/:recipe_book_id/user_recipes', function(req, res){
+app.get('/recipe_books/:recipe_book_id/user_recipes', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser, function(req, res){
   db.RecipeBook.findById(req.params.recipe_book_id)
     .populate('userRecipes')
     .exec(function(err, book){
@@ -10,14 +10,14 @@ app.get('/recipe_books/:recipe_book_id/user_recipes', function(req, res){
 });
 
 // NEW UserRecipe Form
-app.get('/recipe_books/:recipe_book_id/user_recipes/new', function(req, res){
+app.get('/recipe_books/:recipe_book_id/user_recipes/new', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   db.RecipeBook.findById(req.params.recipe_book_id, function(err, book){
     res.render('userRecipes/new', {recipeBook: book});
   });
 });
 
 // CREATE a new UserRecipe for a specific RecipeBook
-app.post('/recipe_books/:recipe_book_id/user_recipes', function(req, res){
+app.post('/recipe_books/:recipe_book_id/user_recipes', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   db.UserRecipe.create(req.body, function(err, recipe){
     if (err) {
       console.log(err);
@@ -35,7 +35,7 @@ app.post('/recipe_books/:recipe_book_id/user_recipes', function(req, res){
 });
 
 // SHOW A UserRecipe
-app.get('/recipe_books/:recipe_book_id/user_recipes/:id', function(req, res){
+app.get('/recipe_books/:recipe_book_id/user_recipes/:id', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   db.UserRecipe.findById(req.params.id)
     .populate('book')
     .exec(function(err, recipe){
@@ -44,7 +44,7 @@ app.get('/recipe_books/:recipe_book_id/user_recipes/:id', function(req, res){
 });
 
 // EDIT form for a UserRecipe in a RecipeBook
-app.get('/recipe_books/:recipe_book_id/user_recipes/:id/edit', function(req, res){
+app.get('/recipe_books/:recipe_book_id/user_recipes/:id/edit', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   db.UserRecipe.findById(req.params.id)
     .populate('book')
     .exec(function(err, recipe){
@@ -57,7 +57,7 @@ app.get('/recipe_books/:recipe_book_id/user_recipes/:id/edit', function(req, res
 });
 
 // UPDATE a UserRecipe
-app.put('/recipe_books/:recipe_book_id/user_recipes/:id', function(req, res){
+app.put('/recipe_books/:recipe_book_id/user_recipes/:id', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   db.UserRecipe.findByIdAndUpdate(req.params.id, req.body, function(err, recipe){
     if (err) {
       console.log(err);
@@ -68,7 +68,7 @@ app.put('/recipe_books/:recipe_book_id/user_recipes/:id', function(req, res){
 });
 
 // REMOVE a UserRecipe from RecipeBook
-app.delete('/recipe_books/:recipe_book_id/user_recipes/:id', function(req, res){
+app.delete('/recipe_books/:recipe_book_id/user_recipes/:id', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   db.UserRecipe.findByIdAndRemove(req.params.id, req.body, function(err, recipe){
     if (err) {
       console.log(err);

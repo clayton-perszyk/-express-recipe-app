@@ -1,4 +1,4 @@
-app.get('/', function(req, res){
+app.get('/', routeHelpers.preventLoginSignup,function(req, res){
   res.render('index');
 });
 
@@ -7,9 +7,6 @@ require('./recipeBooks');
 require('./userRecipes');
 require('./users');
 
-app.get('logout', function(req, res){
-  // logout
-});
 
 // catch-all route
 app.get('*', function(req, res){

@@ -1,39 +1,41 @@
 var db = require('../models/index');
 
 // INDEX
-app.get('/recipe_books', function(req, res){
-  db.RecipeBook.find({}, function(err, books){
-    res.render('recipeBooks/index', {books: books});
+app.get('/recipe_books', routeHelpers.ensureLoggedIn, function(req, res){
+  db.RecipeBook.find({owner: req.session.id}, function(err, books){
+    res.render('recipeBooks/index', {books: books || ["NO BOOKS"]});
   });
 });
 
 // SEND NEW FORM
-app.get('/recipe_books/new', function(req, res){
-  res.render('recipe_books/new');
+app.get('/recipe_books/new', routeHelpers.ensureLoggedIn, function(req, res){
+  res.render('recipeBooks/new');
 });
 
 // CREATE NEW RECIPE BOOK
-app.post('/recipe_books', function(req, res){
-  var recipeBook = req.body;
-  db.RecipeBook.create(recipeBook, function(err, book){
-    if (err) {
-      console.log(err);
-    } else {
+app.post('/recipe_books', routeHelpers.ensureLoggedIn,function(req, res){
+  var newRecipeBook = req.body;
+  db.User.findById(req.session.id, function(err, user){
+    db.RecipeBook.create(newRecipeBook, function(err, book){
+      user.recipeBooks.push(book);
+      book.owner = req.session.id;
+      book.save();
+      user.save();
       res.redirect('/recipe_books');
-    }
+    });
   });
 });
 
 // SHOW A RECIPE BOOK
-app.get('/recipe_books/:id', function(req, res){
-  db.RecipeBook.findById(req.params.id, function(err, book){
+app.get('/recipe_books/:recipe_book_id', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
+  db.RecipeBook.findById(req.params.recipe_book_id, function(err, book){
     res.render('recipeBooks/show', {book: book});
   });
 });
 
 // GET EDIT FORM FOR A RECIPE BOOK
-app.get('/recipe_books/:id/edit', function(req, res){
-  db.RecipeBook.findById(req.params.id, function(err, book){
+app.get('/recipe_books/:recipe_book_id/edit', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
+  db.RecipeBook.findById(req.params.recipe_book_id, function(err, book){
     if (err) {
       console.log(err);
     } else {
@@ -43,9 +45,9 @@ app.get('/recipe_books/:id/edit', function(req, res){
 });
 
 // UPDATE A RECIPE BOOK
-app.put('/recipe_books/:id', function(req, res){
+app.put('/recipe_books/:recipe_book_id', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
   var updatedContent = req.body;
-  db.RecipeBook.findByIdAndUpdate(req.params.id, updatedContent,
+  db.RecipeBook.findByIdAndUpdate(req.params.recipe_book_id, updatedContent,
     function(err, book){
       if (err) {
         console.log(err);
@@ -57,8 +59,8 @@ app.put('/recipe_books/:id', function(req, res){
 });
 
 // DELETE A RECIPE BOOK
-app.delete('/recipe_books/:id', function(req, res){
-  db.RecipeBook.findByIdAndRemove(req.params.id, function(err, book){
+app.delete('/recipe_books/:recipe_book_id', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
+  db.RecipeBook.findByIdAndRemove(req.params.recipe_book_id, function(err, book){
     if (err) {
       console.log(err);
     } else {
