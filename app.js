@@ -3,6 +3,7 @@ var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 var session = require('cookie-session');
 var db = require('./models');
+var favicon = require('serve-favicon');
 loginHelpers = require('./middleware/loginHelpers');
 routeHelpers = require('./middleware/routeHelpers');
 viewHelpers = require('./middleware/viewHelpers');
@@ -15,6 +16,7 @@ app.use(loginHelpers);
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
+app.use(favicon(__dirname + '/public/images/favicon2.ico'));
 app.use(session({
   maxAge: 3600000,
   secret: 'youllnevergethis',
