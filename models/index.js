@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/express_recipe_app');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/express_recipe_app');
 
 module.exports.F2fRecipe = require('./f2fRecipe');
 module.exports.RecipeBook = require('./recipeBook');
