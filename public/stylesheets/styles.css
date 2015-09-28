@@ -122,3 +122,9 @@ h6 {
   height: 40px;
   margin: 12px 10px 0 10px;
 }
+
+
+.logo:hover,
+.brand-logo:hover {
+  color: #eee;
+}
