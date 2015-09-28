@@ -11,7 +11,7 @@
       </p>
     </div>
     <div class="f2f-recipe-options col m6">
-      <a class="waves-effect waves-light btn" href="<%= recipe.source %>">View Recipe</a><br><br>
+      <a class="waves-effect waves-light btn" href="<%= recipe.source %>" target="_blank">View Recipe</a><br><br>
       <form action="/recipe_books/<%= recipe.book.id %>/f2f_recipes/<%= recipe.id %>?_method=DELETE" method="POST">
         <button class="waves-effect waves-light btn red" type="submit" name="button">Delete Recipe</button>
       </form>
