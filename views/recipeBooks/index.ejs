@@ -14,7 +14,7 @@
         <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i><%=  books[i].f2fRecipes.length + books[i].userRecipes.length%> <%= books[i].title %> recipes</span>
         <p># of F2F Recipes: <%= books[i].f2fRecipes.length %></p>
         <p># of <%= books[i].owner.firstName %>'s Recipes: <%= books[i].userRecipes.length %></p>
-        <p>created/updated <%= moment(books[i].dateCreated).fromNow() %></p>
+        <p>created <%= moment(books[i].dateCreated).fromNow() %></p>
         <a class="waves-effect waves-light btn" href="/recipe_books/<%= books[i].id %>/edit">Edit Book</a>
         <br>
         <br>

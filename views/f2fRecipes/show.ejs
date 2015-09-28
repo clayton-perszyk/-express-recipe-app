@@ -6,6 +6,9 @@
         <b>Social Rating: <%= recipe.socialRating %></b>
       </p>
       <img class="recipe-image" src="<%= recipe.imageUrl %>" alt="<%= recipe.title %>" />
+      <p class="published">
+        <b>Published By: <%= recipe.publisher %></b>
+      </p>
     </div>
     <div class="f2f-recipe-options col m6">
       <a class="waves-effect waves-light btn" href="<%= recipe.source %>">View Recipe</a><br><br>

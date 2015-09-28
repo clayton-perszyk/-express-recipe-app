@@ -13,6 +13,7 @@
       <div class="f2f-recipe-options col m6">
         <a class="waves-effect waves-light btn" href="<%= recipe.source_url %>">View Recipe</a><br><br>
         <form action="/recipe_books/<%= bookId %>/f2f_recipes" method="post">
+          <input type="hidden" name="publisher" value="<%= recipe.publisher %>">
           <input type="hidden" name="title" value="<%= recipe.title %>">
           <input type="hidden" name="imageUrl" value="<%= recipe.image_url %>">
           <input type="hidden" name="source" value="<%= recipe.source_url %>">
