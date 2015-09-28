@@ -1,16 +1,18 @@
 <% include ../partials/header %>
-  <!-- TODO: Populate UserRecipes And F2fRecipes in controller -->
-  <h1><%= book.title %></h1>
-  <a href="/recipe_books/<%= book._id %>/user_recipes">See Your Recipes</a>
-  <a href="/recipe_books/<%= book._id %>/f2f_recipes">See F2F Recipes</a>
-  <a href="/recipe_books/<%= book._id %>/user_recipes/new">Add Your Own Recipe</a>
-  <h2>Search For a Recipe</h2>
+  <h1 class="center-align"><%= book.title.toUpperCase() %></h1>
+  <div class="center-align">
+    <a class="waves-effect waves-light btn" href="/recipe_books/<%= book._id %>/user_recipes">See My Recipes</a>
+    <a class="waves-effect waves-light btn" href="/recipe_books/<%= book._id %>/f2f_recipes">See F2F Recipes</a>
+    <a class="waves-effect waves-light btn" href="/recipe_books/<%= book._id %>/user_recipes/new">Add Your Own Recipe</a>
+
+
+  <h2>Search For A Recipe</h2>
   <form action="/search_results" method="get">
     <input type="hidden" name="recipeBook" value="<%= book.id %>">
     <input type="search" name="search" placeholder="Find A Recipe">
-    <input type="submit" name="name" value="Submit">
+    <button class="waves-effect waves-light btn" type="submit" name="name">Submit</button>
   </form>
-  <form action="/recipe_books/<%= book.id %>?_method=DELETE" method="post">
-    <input type="submit" name="submit" value="Delete Book">
-  </form>
+  <br>
+  <a href="/">Back To Recipe Books</a>
+  </div>
 <% include ../partials/footer %>

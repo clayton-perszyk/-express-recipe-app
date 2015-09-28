@@ -1,7 +1,16 @@
 <% include ../partials/header %>
   <h1><%= label %></h1>
   <% for(var i = 0; i < recipes.length; i++) { %>
-    <%= recipes[i]._id %>
-    <li><a href="/recipe_books/<%= book.id %>/f2f_recipes/new?recipeId=<%= recipes[i].recipe_id %>"><%= recipes[i].title %></a></li>
+    <ul class="collection">
+      <li class="collection-item avatar">
+        <img src="<%= recipes[i].image_url %>" alt="<%= recipes[i].title %>" class="pics">
+        <div class="recipe-search-result">
+          <span class="title"><a href="/recipe_books/<%= book.id %>/f2f_recipes/new?recipeId=<%= recipes[i].recipe_id %>"><%= recipes[i].title %></a></span>
+          <p>Social Rank: <%= parseFloat(recipes[i].social_rank).toFixed(2) %><br>
+            Published By: <%= recipes[i].publisher %>
+         </p>
+        </div>
+      </li>
+    </ul>
   <% } %>
 <% include ../partials/footer %>

@@ -4,7 +4,7 @@ var f2fRecipeSchema = new mongoose.Schema({
   title: String,
   imageUrl: String,
   source: String,
-  socialRating: Number,
+  socialRating: String,
   dateAdded: Date,
   book: {
     type: mongoose.Schema.Types.ObjectId,

@@ -1,21 +1,24 @@
 <% include ../partials/header %>
-<div class="col s6">
-  <h1>Login</h1>
   <form method="POST" action="/login" >
     <div class="row">
-      <div class="form-group col s4">
-        <label for="email"> Email:     </label>
-        <input type="text" id="email" name="user[email]" class="form-control" autofocus>
+      <h1>Login</h1>
+      <% if (err) { %>
+        <p class="#d32f2f-text red-text darken-2 login-error"><%= err %></p>
+      <% } %>
+      <div class="form-group col s4 input-field">
+        <input type="email" id="email" name="user[email]" class="validate" autofocus>
+        <label for="email">Email:</label>
       </div>
     </div>
     <div class="row">
-      <div class="form-group col s4">
-        <label for="pass"> Password:</label>
+      <div class="form-group col s4 input-field">
         <input type="password" id="password" name="user[password]" class="form-control">
+        <label for="password"> Password:</label>
       </div>
     </div>
     <input type="submit" value="Login" class="btn btn-primary">
   </form>
+  <br>
   <a href="/signup">Don't have an account? Sign up here</a>
 </div>
 

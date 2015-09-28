@@ -56,7 +56,7 @@ userSchema.statics.authenticate = function(formData, callback){
   },
   function(err, user){
     if (user === null) {
-      callback("Invalid username or password", null);
+      callback(["Invalid username or password"], null);
     } else {
       user.checkpassword(formData.password, callback);
     }

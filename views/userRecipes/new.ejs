@@ -1,4 +1,5 @@
 <% include ../partials/header %>
+  <h1>Add A New Recipe</h1>
   <form action="/recipe_books/<%= recipeBook.id %>/user_recipes" method="post">
     <div>
       <label>Recipe Title:
@@ -7,19 +8,22 @@
     </div>
     <div>
       <label>Image URL:
-        <input type="text" name="imageUrl" place="Image URL">
+        <input type="text" name="imageUrl" place="Image URL" placeholder="Image URL">
       </label>
     </div>
     <div>
       <label>Ingredients:
-        <textarea name="ingredients" rows="8" cols="40" placeholder="Ingredients"></textarea>
+        <textarea name="ingredients" rows="8" cols="40" placeholder="1/2 cup this &#10; 1/3 cup that"></textarea>
       </label>
     </div>
     <div>
       <label>Directions:
       </label>
-      <textarea name="directions" rows="8" cols="40" placeholder="Directions"></textarea>
+      <textarea name="directions" rows="8" cols="40" placeholder="1. Do this &#10;2. Do that"></textarea>
     </div>
-    <input type="submit" name="submit" value="Add Recipe">
+    <br>
+    <button class="waves-effect waves-light btn" type="submit" name="submit">Add Recipe</button>
   </form>
+  <br>
+  <a href="/">Back To Recipe Books</a>
 <% include ../partials/footer %>

@@ -1,0 +1,114 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.jumbotron {
+  width: 800px;
+  height: 400px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 35px;
+  background: rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.home-button1 {
+  margin-right: 15px;
+}
+
+.home-button2 {
+  margin-left: 15px;
+}
+
+div .card {
+  width: 250px;
+  height: 320px;
+  margin-left: 10px;
+}
+
+.card-image {
+  width: 250px;
+  height: 200px;
+}
+
+
+#add-book {
+  position: absolute;
+  left: 30%;
+}
+
+h6 {
+  text-align: center;
+}
+
+.pics {
+  width: 110px;
+  height: 100px;
+  float: left;
+  margin-left: -9%;
+}
+
+.recipe-search-result {
+  margin-left: 50px;
+}
+
+.recipe-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.recipe-links {
+  padding-left: 10px;
+}
+
+.recipe-image {
+  width: 300px;
+  height: 200px;
+  border: 1px solid black;
+}
+
+.recipe-container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.recipe-container a {
+  margin-left: 15%;
+}
+
+
+.social-rating {
+  margin-left: 15%;
+}
+
+.recipe-container .f2f-show {
+  margin-left: 0;
+}
+
+.f2f-recipe-options {
+  margin-top: 65px;
+}
+
+.look-inside,
+.card-title h6,
+.f2f-show {
+  font-size: 20px;
+}
+
+.login-error {
+  margin-left: 12px;
+}
+
+.f2f-heading {
+  margin-left: 80px;
+}
+
+.published {
+  margin-left: 12%;
+}

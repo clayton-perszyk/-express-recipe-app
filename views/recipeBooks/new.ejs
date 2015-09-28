@@ -1,13 +1,12 @@
 <% include ../partials/header %>
-
+  <h1>Add A New Recipe Book</h1>
   <form action="/recipe_books" method="post">
     <div>
-      <input type="text" name="title" placeholder="Recipe Title">
+      <input type="text" name="title" placeholder="New Recipe Book Category">
     </div>
     <div>
-      <input type="hidden" name="date" value="<%= moment().format() %>">
+      <input type="hidden" name="dateCreated" value="<%= moment().format() %>">
     </div>
-    <input type="submit" name="name" value="Submit">
+    <button class="waves-effect waves-light btn" type="submit" name="name">Submit</button>
   </form>
-
 <% include ../partials/footer %>

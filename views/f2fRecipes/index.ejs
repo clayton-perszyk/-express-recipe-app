@@ -1,9 +1,24 @@
 <% include ../partials/header %>
 
-  <h1>Recipes in <%= recipeBook.title %> book</h1>
-
-  <% for(var i = 0; i < recipeBook.f2fRecipes.length; i++) { %>
-    <li><a href="/recipe_books/<%= recipeBook._id %>/f2f_recipes/<%= recipeBook.f2fRecipes[i]._id %>"><%= recipeBook.f2fRecipes[i].title %></a></li>
-  <% } %>
-
+  <h1>F2F Recipes in <%= viewHelpers.capitalize(recipeBook.title) %> book</h1>
+    <% if(recipes.length === 0) { %>
+      <p>
+        No recipes.<a href="/recipe_books/<%= recipeBook.id %>"> Click Here</a>  to start adding recipes.
+      </p>
+    <% } %>
+    <% for(var i = 0; i < recipes.length; i++) { %>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="<%= recipes[i].imageUrl %>" alt="<%= recipes[i].title %>" class="pics">
+          <div class="recipe-search-result">
+            <span class="title"><a href="/recipe_books/<%= recipeBook.id %>/f2f_recipes/<%= recipes[i].id %>"><%= recipes[i].title %></a></span>
+            <p>Social Rank: <%= parseFloat(recipes[i].socialRating).toFixed(2) %><br>
+              Published By: <%= recipes[i].publisher %>
+           </p>
+          </div>
+        </li>
+      </ul>
+    <% } %>
+    <a href="/recipe_books/<%= recipeBook.id %>">Back To <%= viewHelpers.capitalize(recipeBook.title)  %> Book</a><br>
+    <a href="/">Back To Recipe Books</a>
 <% include ../partials/footer %>

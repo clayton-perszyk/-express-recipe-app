@@ -1,11 +1,14 @@
 <% include ../partials/header %>
+<h1>Edit <%= book.title %> Book</h1>
 <form action="/recipe_books/<%= book.id %>?_method=PUT" method="POST">
   <div>
     <input type="text" name="title" value="<%= book.title %>">
   </div>
   <div>
-    <input type="hidden" name="date" value="<%= moment().format() %>">
+    <input type="hidden" name="dateCreated" value="<%= moment().format() %>">
   </div>
-  <input type="submit" name="name" value="Submit">
+  <button class="waves-effect waves-light btn" type="submit" name="name">Submit</button>
 </form>
+<br>
+<a href="/">Back To Recipe Books</a>
 <% include ../partials/footer %>

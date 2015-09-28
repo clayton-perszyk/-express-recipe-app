@@ -4,9 +4,10 @@ var db = require('../models/index');
 app.get('/recipe_books/:recipe_book_id/user_recipes', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser, function(req, res){
   db.RecipeBook.findById(req.params.recipe_book_id)
     .populate('userRecipes')
+    .populate('owner')
     .exec(function(err, book){
-    res.render('userRecipes/index', {recipeBook: book});
-  });
+        res.render('userRecipes/index', {recipeBook: book, recipes: book.userRecipes, owner: book.owner} );
+    });
 });
 
 // NEW UserRecipe Form
@@ -39,7 +40,10 @@ app.get('/recipe_books/:recipe_book_id/user_recipes/:id', routeHelpers.ensureLog
   db.UserRecipe.findById(req.params.id)
     .populate('book')
     .exec(function(err, recipe){
-      res.render('userRecipes/show', {recipe: recipe});
+      console.log(recipe.ingredients);
+      var ingredients = recipe.ingredients.split('\n');
+      var directions = recipe.directions.split('\n');
+      res.render('userRecipes/show', {recipe: recipe, ingredients: ingredients, directions: directions});
     });
 });
 
@@ -62,7 +66,7 @@ app.put('/recipe_books/:recipe_book_id/user_recipes/:id', routeHelpers.ensureLog
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/recipe_books/' + req.params.recipe_book_id + '/user_recipes');
+      res.redirect('/recipe_books/' + req.params.recipe_book_id + '/user_recipes/' + recipe.id);
     }
   });
 });

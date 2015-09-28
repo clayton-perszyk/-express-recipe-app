@@ -1,3 +1,23 @@
 <% include ../partials/header %>
   <h1><%= recipe.title %></h1>
+  <div class="row">
+    <div class="recipe-container col m6">
+      <p class="social-rating">
+        <b>Social Rating: <%= recipe.socialRating %></b>
+      </p>
+      <img class="recipe-image" src="<%= recipe.imageUrl %>" alt="<%= recipe.title %>" />
+    </div>
+    <div class="f2f-recipe-options col m6">
+      <a class="waves-effect waves-light btn" href="<%= recipe.source %>">View Recipe</a><br><br>
+      <form action="/recipe_books/<%= recipe.book.id %>/f2f_recipes/<%= recipe.id %>?_method=DELETE" method="POST">
+        <button class="waves-effect waves-light btn red" type="submit" name="button">Delete Recipe</button>
+      </form>
+      <br>
+      <a href="/recipe_books/<%= recipe.book.id %>/f2f_recipes">Back To Recipes</a><br>
+      <a href="/recipe_books/<%= recipe.book.id %>">Back To Book Index</a><br>
+      <a href="/">Back To Recipe Books</a>
+    </div>
+  </div>
+
+
 <% include ../partials/footer %>

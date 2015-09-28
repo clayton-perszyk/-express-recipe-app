@@ -1,9 +1,35 @@
 <% include ../partials/header %>
 
-  <h1>Recipe Books</h1>
+  <h1 class="center-align"><%= books.length %> Recipe Books</h1>
   <% for(var i = 0; i < books.length; i++) { %>
-    <li><a href="/recipe_books/<%= books[i].id %>"><%= books[i].title %></a></li>
+    <div class="card left">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="<% if (books[i].f2fRecipes[0]) { %><%= books[i].f2fRecipes[0].imageUrl %><% } else { %> https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2Iyn7r1TAVY7j-8DIi_ANEQyLIAzOifav-1Y3Ezpa26CdJrtQ<% } %>">
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"><%= books[i].title %><i class="material-icons right">more_vert</i></span>
+        <p class="look-inside"><a href="/recipe_books/<%= books[i].id %>">Look Inside</a></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i><%=  books[i].f2fRecipes.length + books[i].userRecipes.length%> <%= books[i].title %> recipes</span>
+        <p># of F2F Recipes: <%= books[i].f2fRecipes.length %></p>
+        <p># of <%= books[i].owner.firstName %>'s Recipes: <%= books[i].userRecipes.length %></p>
+        <p>created/updated <%= moment(books[i].dateCreated).fromNow() %></p>
+        <a class="waves-effect waves-light btn" href="/recipe_books/<%= books[i].id %>/edit">Edit Book</a>
+        <br>
+        <br>
+        <form action="/recipe_books/<%= books[i].id %>?_method=DELETE" method="POST">
+            <button class="waves-effect waves-light btn #f44336 red" type="submit" name="button">DELETE BOOK</button>
+        </form>
+      </div>
+    </div>
   <% } %>
-   <a href="/recipe_books/new">Add New Recipe Book</a>
+    <div class="card left">
+      <div class="card-content">
+        <span class="card-title"><a href="/recipe_books/new"><h6>Add Recipe Book</h6> <br><img id="add-book" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRwJV2Hq9Mbl-BXmrjeUO4ZLyty-x-J7IBExiZ9nu7gQ4Y9Jbk6" alt="Add recipe" /></a></span>
+      </div>
+    </div>
+
+
 
 <% include ../partials/footer %>

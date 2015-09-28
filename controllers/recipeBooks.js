@@ -2,9 +2,13 @@ var db = require('../models/index');
 
 // INDEX
 app.get('/recipe_books', routeHelpers.ensureLoggedIn, function(req, res){
-  db.RecipeBook.find({owner: req.session.id}, function(err, books){
-    res.render('recipeBooks/index', {books: books || ["NO BOOKS"]});
-  });
+  db.RecipeBook.find({owner: req.session.id})
+    .populate('f2fRecipes')
+    .populate('userRecipes')
+    .populate('owner')
+    .exec(function(err, books){
+      res.render('recipeBooks/index', {books: books || ["NO BOOKS"]});
+    });
 });
 
 // SEND NEW FORM
@@ -28,9 +32,15 @@ app.post('/recipe_books', routeHelpers.ensureLoggedIn,function(req, res){
 
 // SHOW A RECIPE BOOK
 app.get('/recipe_books/:recipe_book_id', routeHelpers.ensureLoggedIn, routeHelpers.ensureCorrectUser,function(req, res){
-  db.RecipeBook.findById(req.params.recipe_book_id, function(err, book){
-    res.render('recipeBooks/show', {book: book});
-  });
+  db.RecipeBook.findById(req.params.recipe_book_id)
+    .populate('f2fRecipes')
+    .populate('userRecipes')
+    .exec(function(err, book){
+      res.render('recipeBooks/show', {book: book});
+    });
+  // db.RecipeBook.findById(req.params.recipe_book_id, function(err, book){
+  //   res.render('recipeBooks/show', {book: book});
+  // });
 });
 
 // GET EDIT FORM FOR A RECIPE BOOK

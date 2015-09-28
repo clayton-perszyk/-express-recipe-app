@@ -10,5 +10,5 @@ require('./users');
 
 // catch-all route
 app.get('*', function(req, res){
-  // render 404
+  res.render('404');
 });

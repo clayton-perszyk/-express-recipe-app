@@ -5,6 +5,7 @@ var session = require('cookie-session');
 var db = require('./models');
 loginHelpers = require('./middleware/loginHelpers');
 routeHelpers = require('./middleware/routeHelpers');
+viewHelpers = require('./middleware/viewHelpers');
 moment = require('moment');
 
 app = express();

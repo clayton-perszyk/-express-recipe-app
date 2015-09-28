@@ -1,7 +1,7 @@
 var db = require('../models/index');
 
 app.get('/login', routeHelpers.preventLoginSignup, function(req, res){
-  res.render('users/login');
+  res.render('users/login', {err: []});
 });
 
 app.post('/login', function(req, res){
@@ -11,13 +11,13 @@ app.post('/login', function(req, res){
       res.redirect('/recipe_books');
     } else {
       console.log(err);
-      res.render('users/login', {user: user});
+      res.render('users/login', {user: user, err: err});
     }
   });
 });
 
 app.get('/signup', routeHelpers.preventLoginSignup, function(req, res){
-  res.render('users/signup');
+  res.render('users/signup', {err: []});
 });
 
 app.post('/signup', function(req, res){
@@ -28,7 +28,7 @@ app.post('/signup', function(req, res){
       res.redirect('/recipe_books');
     } else {
       console.log(err);
-      res.render('users/signup');
+      res.render('users/signup', {err: err});
     }
   });
 });

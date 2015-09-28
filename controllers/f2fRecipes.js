@@ -6,7 +6,7 @@ app.get('/recipe_books/:recipe_book_id/f2f_recipes', routeHelpers.ensureLoggedIn
   db.RecipeBook.findById(req.params.recipe_book_id)
     .populate('f2fRecipes')
     .exec(function(err, book){
-      res.render('f2fRecipes/index', {recipeBook: book});
+      res.render('f2fRecipes/index', {recipeBook: book, recipes: book.f2fRecipes});
     });
 });
 
@@ -40,7 +40,7 @@ app.get('/search_results', routeHelpers.ensureLoggedIn,function(req, res){
           } else if (!err && response.statusCode === 200) {
             var recipeData = JSON.parse(body);
             var recipes = recipeData.recipes;
-            res.render('f2fRecipes/recipe-search-results', {book: book, recipes: recipes, label: "Recipes with " + searchTerm + "in them"});
+            res.render('f2fRecipes/recipe-search-results', {book: book, recipes: recipes, label: "Recipes with " + searchTerm});
           }
         });
     }
@@ -55,6 +55,7 @@ app.post('/recipe_books/:recipe_book_id/f2f_recipes', routeHelpers.ensureLoggedI
       res.render('f2frecipes/new', {recipe: recipe});
     } else {
       db.RecipeBook.findById(req.params.recipe_book_id, function(err, book){
+        console.log(recipe);
         book.f2fRecipes.push(recipe);
         recipe.book = book._id;
         recipe.save();

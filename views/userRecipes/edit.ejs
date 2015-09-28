@@ -1,5 +1,6 @@
 <% include ../partials/header %>
-  <form action="/recipe_books/<%= recipe.book._id %>/user_recipes/<%= recipe._id %>?_method=PUT" method="POST">
+  <h1>Edit <%= recipe.title %></h1>
+  <form action="/recipe_books/<%= recipe.book._id %>/user_recipes/<%= recipe.id %>?_method=PUT" method="POST">
     <div>
       <label>Recipe Title:
         <input type="text" name="title" value="<%= recipe.title %>">
@@ -20,6 +21,10 @@
       </label>
       <textarea name="directions" rows="8" cols="40" ><%= recipe.directions %></textarea>
     </div>
-    <input type="submit" name="submit" value="Update Recipe">
+    <button class="waves-effect waves-light btn" type="submit" name="submit">Update Recipe</button>
   </form>
+  <br>
+  <a href="/recipe_books/<%= recipe.book.id %>/user_recipes/<%= recipe.id %>">Back To <%= recipe.title %></a>
+  <br>
+  <a href="/">Back To Recipe Books</a>
 <% include ../partials/footer %>
