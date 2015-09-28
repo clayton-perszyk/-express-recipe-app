@@ -116,3 +116,9 @@ h6 {
 .my-recipe-title {
   margin-left: 20%;
 }
+
+.logo {
+  width: 30px;
+  height: 40px;
+  margin: 12px 10px 0 10px;
+}
