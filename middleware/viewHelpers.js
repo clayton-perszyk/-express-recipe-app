@@ -1,7 +1,13 @@
 var db = require('../models');
 var viewHelpers = {
   capitalize: function(string){
-    return string.charAt(0).toUpperCase() + string.slice(1, string.lenght);
+    var stringSplit = string.split(" ");
+    var returnString = "";
+    stringSplit.forEach(function(word){
+      returnString += word.charAt(0).toUpperCase() + word.slice(1, word.length);
+      returnString += " ";
+    });
+    return returnString.trim();
   },
 
   pluralize: function(word, number){

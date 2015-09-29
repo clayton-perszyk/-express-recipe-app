@@ -1,7 +1,7 @@
 <% include ../partials/header %>
   <h1><%= recipe.title %></h1>
   <div class="row">
-    <div class="recipe-container col m6">
+    <div class="recipe-container col m5">
       <p class="social-rating">
         <b>Social Rating: <%= recipe.socialRating %></b>
       </p>
@@ -11,7 +11,7 @@
         <b><%= recipe.publisher %></b>
       </p>
     </div>
-    <div class="f2f-recipe-options col m6">
+    <div class="f2f-recipe-options col m5">
       <a class="waves-effect waves-light btn" href="<%= recipe.source %>" target="_blank">View Recipe</a><br><br>
       <form action="/recipe_books/<%= recipe.book.id %>/f2f_recipes/<%= recipe.id %>?_method=DELETE" method="POST">
         <button class="waves-effect waves-light btn red" type="submit" name="button">Delete Recipe</button>

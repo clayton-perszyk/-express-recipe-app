@@ -68,7 +68,7 @@ h6 {
 }
 
 .recipe-image {
-  width: 300px;
+  width: 250px;
   height: 200px;
   border: 1px solid black;
 }
@@ -84,7 +84,7 @@ h6 {
 
 
 .social-rating {
-  margin-left: 15%;
+  margin-left: 10%;
 }
 
 .recipe-container .f2f-show {
