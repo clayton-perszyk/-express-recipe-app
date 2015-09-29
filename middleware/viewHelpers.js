@@ -5,7 +5,7 @@ var viewHelpers = {
   },
 
   pluralize: function(word, number){
-    return number === 1 ? word : (word + "s");
+    return parseInt(number) === 1 ? word : (word + "s");
   }
 };
 
