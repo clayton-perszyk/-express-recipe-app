@@ -63,7 +63,7 @@ app.put('/recipe_books/:recipe_book_id', routeHelpers.ensureLoggedIn, routeHelpe
         console.log(err);
         res.render('recipeBooks/edit', {book: book});
       } else {
-        res.redirect('/recipe_books/' + book.id);
+        res.redirect('/recipe_books');
       }
     });
 });
