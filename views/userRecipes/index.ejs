@@ -1,5 +1,5 @@
 <% include ../partials/header %>
-    <h1>My Recipes in <%= viewHelpers.capitalize(recipeBook.title) %> book</h1>
+    <h1>My Recipes In <%= viewHelpers.capitalize(recipeBook.title) %> book</h1>
       <% if(recipes.length === 0) { %>
         <p>
           No recipes.<a href="/recipe_books/<%= recipeBook.id %>"> Click Here</a>  to start adding recipes.
